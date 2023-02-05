@@ -9,5 +9,5 @@ docker build -t [tag] --build-arg ARG=VALUE .
 
 ## Running
 ```sh
-docker run [tag]
+docker run -it --rm [tag]
 ```
