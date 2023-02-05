@@ -1,9 +1,13 @@
 #!/bin/bash
+DOCKER_USER=$USER
+TAG=arch
 
 if [ -z ${1+x} ]; then
-  echo "Usage: run.sh [username]"
-  exit 22
+  echo "No username provided, defaulting to your username $DOCKER_USER"
+else
+  DOCKER_USER=$1
+  echo "Using provided username $DOCKER_USER"
 fi
 
-docker build --build-arg USERNAME=$1 -t arch .
-docker run -it --rm arch
+docker build --build-arg DOCKER_USER=$DOCKER_USER -t $TAG .
+docker run -it --rm --user $DOCKER_USER $TAG
